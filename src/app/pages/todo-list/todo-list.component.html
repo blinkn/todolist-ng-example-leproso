@@ -1,0 +1,51 @@
+<h1>Todo List</h1>
+
+<div class="toolbar">
+    <button (click)="newTodo()">New Todo</button>
+    <div>
+        <label>
+            Show Completed
+            <input type="checkbox" [(ngModel)]="showCompleted">
+        </label>
+    </div>
+</div>
+
+<br>
+
+<table class="table">
+    <tr>
+        <td></td>
+        <td></td>
+        <td>uid</td>
+        <td>Description</td>
+        <td>Complete</td>
+        <td>Created At</td>
+        <td>Updated At</td>
+    </tr>
+
+    <tr *ngFor="let model of getModels(showCompleted)">
+        <td>
+            <button (click)="deleteModel(model)">
+                Delete
+            </button>
+        </td>
+        <td>
+            <button (click)="updateModel(model)">
+                Update
+            </button>
+        </td>
+        <td>{{model.uid}}</td>
+        <td>{{model.description}}</td>
+        <td>
+            <input type="checkbox" [(ngModel)]="model.complete">
+        </td>
+        <td>
+            {{model.createdAt}}
+        </td>
+        <td>
+            {{model.updatedAt}}
+        </td>
+    </tr>
+
+    
+</table>
