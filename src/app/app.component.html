@@ -1,5 +1,6 @@
-<app-header></app-header>
+<app-header #header></app-header>
 
 <div class="space">
+    <h3>{{header.title}}</h3>
     <router-outlet></router-outlet>
 </div>

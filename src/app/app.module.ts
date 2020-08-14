@@ -8,6 +8,10 @@ import { ConfigComponent } from './pages/config/config.component';
 import { Routes, RouterModule } from '@angular/router';
 import { Error404Component } from './pages/error404/error404.component';
 import {FormsModule} from '@angular/forms';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {path: '', redirectTo: 'todo-list', pathMatch: 'full'},
@@ -26,8 +30,11 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@
     border-collapse: collapse;
     width: 100%;
     margin-top: 20px;
-    
+
     tr {
         td  {
             padding: 8px;
@@ -27,4 +27,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.transluscent {
+  opacity: .5;
+
 }

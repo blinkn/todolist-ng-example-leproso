@@ -1,10 +1,10 @@
-<h1>Todo List</h1>
+<h1>Todo List ({{uncompletedTodos}})</h1>
 
 <div class="toolbar">
     <button (click)="newTodo()">New Todo</button>
     <div>
         <label>
-            Show Completed
+            Show Completed ({{completedTodos}})
             <input type="checkbox" [(ngModel)]="showCompleted">
         </label>
     </div>
@@ -14,6 +14,7 @@
 
 <table class="table">
     <tr>
+
         <td></td>
         <td></td>
         <td>uid</td>
@@ -23,29 +24,27 @@
         <td>Updated At</td>
     </tr>
 
-    <tr *ngFor="let model of getModels(showCompleted)">
-        <td>
-            <button (click)="deleteModel(model)">
-                Delete
-            </button>
-        </td>
-        <td>
-            <button (click)="updateModel(model)">
-                Update
-            </button>
-        </td>
-        <td>{{model.uid}}</td>
-        <td>{{model.description}}</td>
-        <td>
-            <input type="checkbox" [(ngModel)]="model.complete">
-        </td>
-        <td>
-            {{model.createdAt}}
-        </td>
-        <td>
-            {{model.updatedAt}}
-        </td>
-    </tr>
+    <ng-container *ngFor="let todo of models" [class.transluscent]="todo.complete">
+      <tr [@anim1]="'onEnter'">
+        <ng-container *ngIf="(todo.complete && showCompleted) || !todo.complete" >
 
-    
+          <td>
+            <button (click)="delete(todo)">Delete</button>
+          </td>
+          <td>
+            <button (click)="edit(todo)">Edit</button>
+          </td>
+          <td>{{todo.uid}}</td>
+          <td>{{todo.description}}</td>
+          <td>
+            <input #campo type="checkbox" [checked]="todo.complete" (change)="completeTodo(todo, campo)">
+          </td>
+          <td>{{todo.createdAt}}</td>
+          <td>{{todo.updatedAt}}</td>
+        </ng-container>
+      </tr>
+    </ng-container>
+
+
 </table>
+
